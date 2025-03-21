@@ -5,7 +5,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const App = () => {
   const bottomSheetRef = useRef<BottomSheet>(null);
-  const snapPoints = useMemo(() => ['25%', '50%', '50%'], []);  
+  const snapPoints = useMemo(() => ['25%', '50%', '90%'], []); 
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
@@ -21,15 +21,12 @@ const App = () => {
 </TouchableOpacity>
 
 <BottomSheet
-  ref={bottomSheetRef}
-  snapPoints={snapPoints}
-  onChange={(index) => {
-    console.log("BottomSheet Index: ", index);
-  }}
-  onAnimate={(fromIndex, toIndex) => {
-    console.log(`Animating from index ${fromIndex} to ${toIndex}`);
-  }}
->
+          ref={bottomSheetRef}
+          index={1}
+          snapPoints={snapPoints}
+          animateOnMount={true}
+          enableDynamicSizing={false}
+        >
   <View style={styles.contentContainer}>
     <Text>Bottom Sheet Content</Text>
   </View>
